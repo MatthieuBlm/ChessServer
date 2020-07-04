@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.matthieu.chessserver.entity.Board;
 import com.matthieu.chessserver.entity.Game;
 import com.matthieu.chessserver.entity.Move;
 import com.matthieu.chessserver.exception.ForbiddenMoveException;
@@ -42,11 +43,18 @@ public class GameService {
 	}
 	
 	public void performMove(String gameId, Move move) throws ForbiddenMoveException {
-		// TODO
+		Game game = this.getGame(gameId);
+		Board board = this.getBoard(game);
+		
+		if(this.isValidMove(board, move)) {
+			game.addMove(move);
+		} else {
+			throw new ForbiddenMoveException(move);
+		}
+		
 	}
 	
-	public boolean isValidMove(String gameId, Move move) {
-		Game game = this.getGame(gameId);
+	public boolean isValidMove(Board board, Move move) {
 		
 		// TODO
 		
@@ -57,6 +65,12 @@ public class GameService {
 		// Verifiy if given move is in possible move
 		
 		return true;
+	}
+	
+	public Board getBoard(Game game) {
+		Board board = new Board();
+		
+		return board;
 	}
 	
 }

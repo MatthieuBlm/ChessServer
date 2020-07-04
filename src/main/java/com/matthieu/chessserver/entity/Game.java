@@ -29,6 +29,10 @@ public class Game {
 		this.moves = new LinkedList<>();
 	}
 	
+	
+	public void addMove(Move move) {
+		this.moves.add(move);
+	}
 
 	public Long getId() {
 		return id;
