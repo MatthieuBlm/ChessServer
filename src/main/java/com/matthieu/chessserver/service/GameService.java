@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 import com.matthieu.chessserver.entity.Board;
 import com.matthieu.chessserver.entity.Game;
 import com.matthieu.chessserver.entity.Move;
+import com.matthieu.chessserver.entity.Piece;
+import com.matthieu.chessserver.entity.PieceType;
 import com.matthieu.chessserver.exception.ForbiddenMoveException;
 import com.matthieu.chessserver.repository.GameRepository;
 
@@ -70,9 +72,26 @@ public class GameService {
 	public Board getBoard(Game game) {
 		Board board = new Board();
 		
-		// TODO build board with all games moves
+		for (Move move : game.getMoves()) {
+			this.applyMove(board, move);
+		}
 		
 		return board;
+	}
+	
+	private boolean applyMove(Board board, Move move) {
+		Optional<Piece> piece = board.getPiece(move.getFrom());
+		
+		if(piece.isEmpty()) {
+			return false;
+		}
+		
+		switch(piece.get().getPieceType()) {
+		case PAWN :
+			break;
+		default:
+			break;
+		}
 	}
 	
 }
