@@ -42,6 +42,21 @@ public class GameService {
 	}
 	
 	public void performMove(String gameId, Move move) throws ForbiddenMoveException {
-		//TODO
+		// TODO
 	}
+	
+	public boolean isValidMove(String gameId, Move move) {
+		Game game = this.getGame(gameId);
+		
+		// TODO
+		
+		// Get Pawn
+		
+		// Get possible move of pawn
+		
+		// Verifiy if given move is in possible move
+		
+		return true;
+	}
+	
 }
