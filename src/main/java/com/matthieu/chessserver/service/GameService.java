@@ -58,9 +58,9 @@ public class GameService {
 		
 		// TODO
 		
-		// Get Pawn
+		// Get Piece
 		
-		// Get possible move of pawn
+		// Get possible move of piece
 		
 		// Verifiy if given move is in possible move
 		
@@ -69,6 +69,8 @@ public class GameService {
 	
 	public Board getBoard(Game game) {
 		Board board = new Board();
+		
+		// TODO build board with all games moves
 		
 		return board;
 	}
