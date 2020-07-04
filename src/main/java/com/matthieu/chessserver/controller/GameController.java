@@ -8,16 +8,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("game/{gameId}")
+@RequestMapping("game")
 public class GameController {
 
-	@GetMapping
+	@PostMapping("start")
+	public ResponseEntity<?> startGame() {
+		
+		return ResponseEntity.ok().build();
+	}
+	
+	
+	@GetMapping("{gameId}")
 	public ResponseEntity<?> getGame(@PathVariable Long gameId) {
 		
 		return ResponseEntity.ok().build();
 	}
 	
-	@PostMapping
+	@PostMapping("{gameId}")
 	public ResponseEntity<?> recieveCoordinates(@PathVariable Long gameId) {
 		
 		return ResponseEntity.ok().build();
