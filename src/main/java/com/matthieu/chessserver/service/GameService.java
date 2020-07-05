@@ -1,5 +1,6 @@
 package com.matthieu.chessserver.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.slf4j.Logger;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.matthieu.chessserver.exception.ForbiddenMoveException;
 import com.matthieu.chessserver.model.Board;
+import com.matthieu.chessserver.model.entity.Coordinate;
 import com.matthieu.chessserver.model.entity.Game;
 import com.matthieu.chessserver.model.entity.Move;
 import com.matthieu.chessserver.model.piece.Piece;
@@ -52,7 +54,6 @@ public class GameService {
 		} else {
 			throw new ForbiddenMoveException(move);
 		}
-		
 	}
 	
 	public boolean isValidMove(Board board, Move move) {
@@ -63,22 +64,11 @@ public class GameService {
 			return false;
 		}
 		
-		switch(piece.get().getPieceType()) {
-		case PAWN :
-			break;
-		default:
-			break;
-		}
+		Piece pieceToMove = piece.get();
+		
+		List<Coordinate> possibleCoord = pieceToMove.getRangeFrom(move.getFrom(), board);
 
-		// TODO
-		
-		// Get Piece
-		
-		// Get possible move of piece
-		
-		// Verifiy if given move is in possible move
-		
-		return true;
+		return possibleCoord.contains(move.getDestination());
 	}
 	
 	public Board getBoard(Game game) {
@@ -99,7 +89,7 @@ public class GameService {
 		}
 		
 		board.removePiece(move.getFrom());
-		board.addPiece(move.getTo(), piece.get());
+		board.setPiece(move.getDestination(), piece.get());
 		
 		return true;
 	}

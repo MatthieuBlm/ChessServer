@@ -7,13 +7,13 @@ public class Move {
 	
 	private Coordinate from;
 	
-	private Coordinate to;
+	private Coordinate destination;
 	
 	public Move() {}
 
-	public Move(Coordinate from, Coordinate to) {
+	public Move(Coordinate from, Coordinate destination) {
 		this.from = from;
-		this.to = to;
+		this.destination = destination;
 	}
 
 	public Coordinate getFrom() {
@@ -24,17 +24,17 @@ public class Move {
 		this.from = from;
 	}
 
-	public Coordinate getTo() {
-		return to;
+	public Coordinate getDestination() {
+		return destination;
 	}
 
-	public void setTo(Coordinate to) {
-		this.to = to;
+	public void setDestination(Coordinate destination) {
+		this.destination = destination;
 	}
 	
 	@Override
 	public String toString() {
-		return "[" + this.from + ", " + this.to + "]";
+		return "[" + this.from + ", " + this.destination + "]";
 	}
 	
 }
