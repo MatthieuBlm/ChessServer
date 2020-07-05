@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.matthieu.chessserver.model.Board;
+import com.matthieu.chessserver.model.Letter;
 import com.matthieu.chessserver.model.entity.Coordinate;
 
 public class Pawn extends Piece {
@@ -32,6 +33,19 @@ public class Pawn extends Piece {
 					possibleCoordinate.add(front2);
 				}
 			}
+			
+			// Pawn can take a piece ?
+			// Bottom right
+			Coordinate maybePiece = new Coordinate(Letter.valueOf(c.getLetter().getValue() - 1), c.getDigit() - 1);
+			if(board.getPiece(maybePiece) != null) {
+				possibleCoordinate.add(maybePiece);
+			}
+			// Bottom left
+			maybePiece = new Coordinate(Letter.valueOf(c.getLetter().getValue() + 1), c.getDigit() - 1);
+			if(board.getPiece(maybePiece) != null) {
+				possibleCoordinate.add(maybePiece);
+			}
+			
 		} else if(this.getColor() == Color.WHITE) {
 			Coordinate front = new Coordinate(c.getLetter(), c.getDigit() + 1);
 			
@@ -46,6 +60,18 @@ public class Pawn extends Piece {
 				if(board.getPiece(front2) == null) {
 					possibleCoordinate.add(front2);
 				}
+			}
+			
+			// Pawn can take a piece ?
+			// Top right
+			Coordinate maybePiece = new Coordinate(Letter.valueOf(c.getLetter().getValue() - 1), c.getDigit() + 1);
+			if(board.getPiece(maybePiece) != null) {
+				possibleCoordinate.add(maybePiece);
+			}
+			// Top left
+			maybePiece = new Coordinate(Letter.valueOf(c.getLetter().getValue() + 1), c.getDigit() + 1);
+			if(board.getPiece(maybePiece) != null) {
+				possibleCoordinate.add(maybePiece);
 			}
 		}
 		

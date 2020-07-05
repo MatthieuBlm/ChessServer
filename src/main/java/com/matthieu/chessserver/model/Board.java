@@ -68,7 +68,13 @@ public class Board {
 	}
 
 	public Optional<Piece> getPiece(Coordinate c) {
-		return Optional.of(this.board[c.getLetter().getValue()][c.getDigit()]);
+		if(c.getDigit() > 8 || c.getDigit() < 1) {
+			return Optional.ofNullable(null);
+		} else if(c.getLetter() == Letter.OUT) {
+			return Optional.ofNullable(null);
+		}
+			
+		return Optional.ofNullable(this.board[c.getLetter().getValue()][c.getDigit()]);
 	}
 	
 	public boolean isOutOfBoard(Coordinate c) {
