@@ -1,6 +1,8 @@
-package com.matthieu.chessserver.entity;
+package com.matthieu.chessserver.model.entity;
 
 import javax.persistence.Entity;
+
+import com.matthieu.chessserver.model.Letter;
 
 @Entity
 public class Coordinate {

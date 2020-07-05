@@ -7,12 +7,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.matthieu.chessserver.entity.Board;
-import com.matthieu.chessserver.entity.Game;
-import com.matthieu.chessserver.entity.Move;
-import com.matthieu.chessserver.entity.Piece;
-import com.matthieu.chessserver.entity.PieceType;
 import com.matthieu.chessserver.exception.ForbiddenMoveException;
+import com.matthieu.chessserver.model.Board;
+import com.matthieu.chessserver.model.entity.Game;
+import com.matthieu.chessserver.model.entity.Move;
+import com.matthieu.chessserver.model.piece.Piece;
 import com.matthieu.chessserver.repository.GameRepository;
 
 @Service
@@ -58,6 +57,19 @@ public class GameService {
 	
 	public boolean isValidMove(Board board, Move move) {
 		
+		Optional<Piece> piece = board.getPiece(move.getFrom());
+		
+		if(piece.isEmpty()) {
+			return false;
+		}
+		
+		switch(piece.get().getPieceType()) {
+		case PAWN :
+			break;
+		default:
+			break;
+		}
+
 		// TODO
 		
 		// Get Piece
@@ -86,12 +98,10 @@ public class GameService {
 			return false;
 		}
 		
-		switch(piece.get().getPieceType()) {
-		case PAWN :
-			break;
-		default:
-			break;
-		}
+		board.removePiece(move.getFrom());
+		board.addPiece(move.getTo(), piece.get());
+		
+		return true;
 	}
 	
 }

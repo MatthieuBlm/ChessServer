@@ -1,4 +1,4 @@
-package com.matthieu.chessserver.entity;
+package com.matthieu.chessserver.model.entity;
 
 import java.util.LinkedList;
 import java.util.List;

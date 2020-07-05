@@ -4,7 +4,7 @@ import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.matthieu.chessserver.entity.Game;
+import com.matthieu.chessserver.model.entity.Game;
 
 public interface GameRepository extends JpaRepository<Game, Long> {
 

@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.matthieu.chessserver.entity.Game;
-import com.matthieu.chessserver.entity.Move;
+import com.matthieu.chessserver.model.entity.Game;
+import com.matthieu.chessserver.model.entity.Move;
 import com.matthieu.chessserver.service.GameService;
 
 @RestController

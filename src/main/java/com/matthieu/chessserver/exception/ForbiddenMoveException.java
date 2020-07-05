@@ -1,6 +1,6 @@
 package com.matthieu.chessserver.exception;
 
-import com.matthieu.chessserver.entity.Move;
+import com.matthieu.chessserver.model.entity.Move;
 
 public class ForbiddenMoveException extends Exception {
 
