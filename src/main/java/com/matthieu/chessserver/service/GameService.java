@@ -30,7 +30,7 @@ public class GameService {
 		
 		newGame = this.gameRepository.save(newGame);
 		
-		logger.info("Nesw game created with id {}", newGame.getPublicId());
+		logger.info("New game created with id {}", newGame.getPublicId());
 				
 		return newGame.getPublicId();
 	}
