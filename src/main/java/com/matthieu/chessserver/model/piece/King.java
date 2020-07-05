@@ -1,12 +1,10 @@
 package com.matthieu.chessserver.model.piece;
 
 import java.awt.Color;
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
-import com.matthieu.chessserver.model.Board;
-import com.matthieu.chessserver.model.Letter;
-import com.matthieu.chessserver.model.entity.Coordinate;
+import com.matthieu.chessserver.model.Vector;
 
 public class King extends Piece {
 
@@ -15,20 +13,23 @@ public class King extends Piece {
 	}
 
 	@Override
-	public List<Coordinate> getRangeFrom(Coordinate c, Board board) {
-		List<Coordinate> possibleCoordinates = new ArrayList<>();
+	protected List<Vector> getRange() {
+		List<Vector> range = new LinkedList<>();
 		
-		for (int i = c.getLetter().getValue() - 1; i < c.getLetter().getValue() + 1; i++) {
-			for (int j = c.getDigit() - 1; j < c.getDigit() + 1; j++) {
-				Coordinate tmpCoord = new Coordinate(Letter.valueOf(i), j);
-				
-				if(!board.isOutOfBoard(tmpCoord)) {
-					possibleCoordinates.add(tmpCoord);
-				}
-			}
-		}
+		// Diagonals
+		range.add(new Vector(-1, -1, 1));
+		range.add(new Vector(1, -1, 1));
+		range.add(new Vector(-1, 1, 1));
+		range.add(new Vector(1, 1, 1));
+
+		// Lines
+		range.add(new Vector(-1, 0, 1));
+		range.add(new Vector(1, 0, 1));
+		range.add(new Vector(0, -1, 1));
+		range.add(new Vector(0, 1, 1));
 		
-		return possibleCoordinates;
+		return range;
 	}
+
 
 }

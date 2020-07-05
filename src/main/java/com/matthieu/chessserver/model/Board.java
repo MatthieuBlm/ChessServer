@@ -13,11 +13,13 @@ import com.matthieu.chessserver.model.piece.Queen;
 import com.matthieu.chessserver.model.piece.Rook;
 
 public class Board {
+	
+	public static final int BOARD_SIZE = 8;
 
 	Piece[][] board;
 	
 	public Board() {
-		this.board = new Piece[8][8];
+		this.board = new Piece[BOARD_SIZE][BOARD_SIZE];
 		
 		// White
 		this.setPiece(new Coordinate(Letter.A, 1), new Rook(Color.WHITE));

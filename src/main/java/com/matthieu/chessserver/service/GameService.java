@@ -66,7 +66,7 @@ public class GameService {
 		
 		Piece pieceToMove = piece.get();
 		
-		List<Coordinate> possibleCoord = pieceToMove.getRangeFrom(move.getFrom(), board);
+		List<Coordinate> possibleCoord = pieceToMove.getPossibleMove(move.getFrom(), board);
 
 		return possibleCoord.contains(move.getDestination());
 	}

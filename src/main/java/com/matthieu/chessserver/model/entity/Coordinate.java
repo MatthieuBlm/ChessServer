@@ -3,6 +3,7 @@ package com.matthieu.chessserver.model.entity;
 import javax.persistence.Entity;
 
 import com.matthieu.chessserver.model.Letter;
+import com.matthieu.chessserver.model.Vector;
 
 @Entity
 public class Coordinate {
@@ -16,6 +17,14 @@ public class Coordinate {
 	public Coordinate(Letter letter, int digit) {
 		this.letter = letter;
 		this.digit = digit;
+	}
+	
+	public Coordinate apply(Vector vector) {
+		Coordinate newCoordinate = new Coordinate(Letter.valueOf(this.getLetter().getValue() + vector.getX()), this.getDigit() + vector.getY());
+		
+		vector.setCapacity(vector.getCapacity() - 1);
+		
+		return newCoordinate;
 	}
 
 	public Letter getLetter() {
