@@ -33,7 +33,7 @@ public class GameController {
 	}
 	
 	@PostMapping("{gameId}")
-	public ResponseEntity<?> recieveMove(@PathVariable String gameId, @RequestBody Move move) {
+	public ResponseEntity<?> receiveMove(@PathVariable String gameId, @RequestBody Move move) {
 		
 		return ResponseEntity.ok().build();
 	}
