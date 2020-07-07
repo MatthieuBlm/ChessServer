@@ -1,26 +1,36 @@
 package com.matthieu.chessserver.model.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 import com.matthieu.chessserver.model.Letter;
 import com.matthieu.chessserver.model.Vector;
 
 @Entity
-public class Coordinate {
+public class Coordinates {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
+	@Enumerated(EnumType.STRING)
 	private Letter letter;
+	
 	private int digit;
 	
+	public Coordinates() {}
 	
-	public Coordinate() {}
-	
-	public Coordinate(Letter letter, int digit) {
+	public Coordinates(Letter letter, int digit) {
 		this.letter = letter;
 		this.digit = digit;
 	}
 	
-	public Coordinate apply(Vector vector) {
-		Coordinate newCoordinate = new Coordinate(Letter.valueOf(this.getLetter().getValue() + vector.getX()), this.getDigit() + vector.getY());
+	public Coordinates apply(Vector vector) {
+		Coordinates newCoordinate = new Coordinates(Letter.valueOf(this.getLetter().getValue() + vector.getX()), this.getDigit() + vector.getY());
 		
 		vector.setCapacity(vector.getCapacity() - 1);
 		

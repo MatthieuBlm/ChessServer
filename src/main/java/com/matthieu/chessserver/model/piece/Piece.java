@@ -7,13 +7,14 @@ import java.util.Optional;
 
 import com.matthieu.chessserver.model.Board;
 import com.matthieu.chessserver.model.Vector;
-import com.matthieu.chessserver.model.entity.Coordinate;
+import com.matthieu.chessserver.model.entity.Coordinates;
 
 public abstract class Piece {
 
 	private PieceType type;
-	private Color color;
+	private final Color color;
 	private boolean movedOnce;
+	private Coordinates coordinates;
 	
 	public Piece(PieceType type, Color color) {
 		this.type = type;
@@ -21,19 +22,26 @@ public abstract class Piece {
 		this.movedOnce = false;
 	}
 	
+	public Coordinates getCoordinates() {
+		return coordinates;
+	}
+	
+	public void setCoordinates(Coordinates coordinates) {
+		this.coordinates = coordinates;
+	}
 	
 	protected abstract List<Vector> getRange();
 	
 	
-	public List<Coordinate> getPossibleMove(Coordinate c, Board board) {
-		List<Coordinate> possibleCoordinates = new ArrayList<>();
+	public List<Coordinates> getPossibleMove(Board board) {
+		List<Coordinates> possibleCoordinates = new ArrayList<>();
 		
 		// For each range direction
 		for (Vector vector : this.getRange()) {
 			
 			// While max range distance isn't reached
 			while(vector.getCapacity() > 0) {
-				Coordinate tmpCoord = c.apply(vector);
+				Coordinates tmpCoord = this.coordinates.apply(vector);
 				
 				if(!board.isOutOfBoard(tmpCoord)) {
 					

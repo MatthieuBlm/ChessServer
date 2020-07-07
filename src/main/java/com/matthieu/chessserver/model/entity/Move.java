@@ -1,34 +1,44 @@
 package com.matthieu.chessserver.model.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Move {
 	
-	private Coordinate from;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 	
-	private Coordinate destination;
+	@OneToOne
+	private Coordinates from;
+	
+	@OneToOne
+	private Coordinates destination;
 	
 	public Move() {}
 
-	public Move(Coordinate from, Coordinate destination) {
+	public Move(Coordinates from, Coordinates destination) {
 		this.from = from;
 		this.destination = destination;
 	}
 
-	public Coordinate getFrom() {
+	public Coordinates getFrom() {
 		return from;
 	}
 
-	public void setFrom(Coordinate from) {
+	public void setFrom(Coordinates from) {
 		this.from = from;
 	}
 
-	public Coordinate getDestination() {
+	public Coordinates getDestination() {
 		return destination;
 	}
 
-	public void setDestination(Coordinate destination) {
+	public void setDestination(Coordinates destination) {
 		this.destination = destination;
 	}
 	

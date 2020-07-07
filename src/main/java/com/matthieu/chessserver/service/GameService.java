@@ -1,5 +1,6 @@
 package com.matthieu.chessserver.service;
 
+import java.awt.Color;
 import java.util.List;
 import java.util.Optional;
 
@@ -10,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.matthieu.chessserver.exception.ForbiddenMoveException;
 import com.matthieu.chessserver.model.Board;
-import com.matthieu.chessserver.model.entity.Coordinate;
+import com.matthieu.chessserver.model.entity.Coordinates;
 import com.matthieu.chessserver.model.entity.Game;
 import com.matthieu.chessserver.model.entity.Move;
 import com.matthieu.chessserver.model.piece.Piece;
@@ -66,7 +67,7 @@ public class GameService {
 		
 		Piece pieceToMove = piece.get();
 		
-		List<Coordinate> possibleCoord = pieceToMove.getPossibleMove(move.getFrom(), board);
+		List<Coordinates> possibleCoord = pieceToMove.getPossibleMove(board);
 
 		return possibleCoord.contains(move.getDestination());
 	}
@@ -92,6 +93,16 @@ public class GameService {
 		board.setPiece(move.getDestination(), piece.get());
 		
 		return true;
+	}
+	
+	public boolean[][] getThreatenedCells(Board board, Color color) {
+		boolean[][] cells = new boolean[Board.BOARD_SIZE][Board.BOARD_SIZE];
+		board.getPieces(color).forEach(p -> {
+			p.getPossibleMove(board).stream().forEach(c -> {
+				cells[c.getLetter().getValue()][c.getDigit()] = true;
+			});
+		});
+		return cells;
 	}
 	
 }
